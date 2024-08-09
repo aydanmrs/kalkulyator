@@ -1,9 +1,11 @@
 package com.example.kalkulyator_fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.kalkulyator_fragment.databinding.FragmentCalculatorBinding
@@ -84,7 +86,27 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun showError(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
+        val snackbar = Snackbar.make(binding.root, "", Snackbar.LENGTH_SHORT).apply {
+            view.setBackgroundColor(Color.TRANSPARENT)
+            (view as ViewGroup).apply {
+                removeAllViews()
+                layoutInflater.inflate(R.layout.snackbar_layout, this, false).apply {
+                    findViewById<TextView>(R.id.snackbar_text).text = message
+                    setPadding(100, 80, 0, 80)
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
+                    addView(this)
+                }
+                layoutParams = (layoutParams as ViewGroup.MarginLayoutParams).apply {
+                    setMargins(60, 0, 60, 60)
+                    width = ViewGroup.LayoutParams.MATCH_PARENT
+                    height = ViewGroup.LayoutParams.WRAP_CONTENT
+                }
+            }
+        }
+        snackbar.show()
     }
 
     override fun onDestroy() {

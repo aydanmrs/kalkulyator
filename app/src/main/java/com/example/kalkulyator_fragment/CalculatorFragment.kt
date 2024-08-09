@@ -92,7 +92,7 @@ class CalculatorFragment : Fragment() {
                 removeAllViews()
                 layoutInflater.inflate(R.layout.snackbar_layout, this, false).apply {
                     findViewById<TextView>(R.id.snackbar_text).text = message
-                    setPadding(100, 80, 0, 80)
+                    setPadding(0, 80, 0, 80)
                     layoutParams = ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         ViewGroup.LayoutParams.WRAP_CONTENT

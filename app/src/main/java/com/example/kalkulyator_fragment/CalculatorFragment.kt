@@ -42,6 +42,16 @@ class CalculatorFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        clearInputFields()
+    }
+
+    private fun clearInputFields() {
+        binding.edNum1.text.clear()
+        binding.edNum2.text.clear()
+    }
+
     private fun calculate(operation: String) {
         val num1 = binding.edNum1.text.toString().toFloatOrNull()
         val num2 = binding.edNum2.text.toString().toFloatOrNull()

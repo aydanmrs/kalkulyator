@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.kalkulyator_fragment.databinding.FragmentCalculatorBinding
+import com.google.android.material.snackbar.Snackbar
 
 class CalculatorFragment : Fragment() {
 
@@ -26,22 +27,18 @@ class CalculatorFragment : Fragment() {
 
         binding.btnAdd.setOnClickListener {
             calculate("+")
-
         }
 
         binding.btnMinus.setOnClickListener {
             calculate("-")
-
         }
 
         binding.btnMultiply.setOnClickListener {
             calculate("*")
-
         }
 
         binding.btnDivide.setOnClickListener {
             calculate("/")
-
         }
     }
 
@@ -50,15 +47,22 @@ class CalculatorFragment : Fragment() {
         val num2 = binding.edNum2.text.toString().toFloatOrNull()
 
         if (num1 == null || num2 == null) {
+            showError(getString(R.string.error_numbers_must_be_filled))
             return
         }
-
 
         val result: Float? = when (operation) {
             "+" -> num1 + num2
             "-" -> num1 - num2
             "*" -> num1 * num2
-            "/" -> num1 / num2
+            "/" -> {
+                if (num2 == 0f) {
+                    showError(getString(R.string.division_by_zero_error))
+                    return
+                } else {
+                    num1 / num2
+                }
+            }
 
             else -> null
         }
@@ -67,6 +71,10 @@ class CalculatorFragment : Fragment() {
             val action = CalculatorFragmentDirections.actionCalculatorFragmentToResultFragment(it)
             findNavController().navigate(action)
         }
+    }
+
+    private fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
     }
 
     override fun onDestroy() {

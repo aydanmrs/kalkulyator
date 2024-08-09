@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.kalkulyator_fragment.databinding.FragmentCalculatorBinding
 
 class CalculatorFragment : Fragment() {
@@ -61,5 +62,15 @@ class CalculatorFragment : Fragment() {
 
             else -> null
         }
+
+        result?.let {
+            val action = CalculatorFragmentDirections.actionCalculatorFragmentToResultFragment(it)
+            findNavController().navigate(action)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

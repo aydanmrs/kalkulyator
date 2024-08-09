@@ -3,12 +3,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".CalculatorFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context=".CalculatorFragment">
 
+        <TextView
+            android:id="@+id/tvCalculatorTitle"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/button"
+            android:padding="16dp"
+            android:text="Calculator"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/edNum1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edNum1"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:background="@drawable/edittext"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="40dp"
+            android:inputType="number"
+            android:imeOptions="actionNext"
+            android:hint="Enter Number 1"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCalculatorTitle" />
+
+        <EditText
+            android:id="@+id/edNum2"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="30dp"
+            android:hint="Enter Number 2"
+            android:inputType="number"
+            android:textStyle="italic"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:imeOptions="actionNext"
+            android:background="@drawable/edittext"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edNum1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_marginTop="56dp"
+            android:text="+"
+            android:textSize="24sp"
+            android:layout_marginStart="30dp"
+            android:textStyle="bold"
+            android:background="@drawable/button"
+            app:layout_constraintEnd_toStartOf="@id/btnMinus"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edNum2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:text="-"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnAdd"
+            app:layout_constraintTop_toTopOf="@id/btnAdd"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnMultiply"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="80dp"
+            android:layout_marginTop="24dp"
+            android:text="*"
+            android:layout_marginStart="30dp"
+            android:textSize="24sp"
+            android:background="@drawable/button"
+            app:layout_constraintEnd_toStartOf="@id/btnDivide"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAdd" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnDivide"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="80dp"
+            android:textSize="24sp"
+            android:layout_marginEnd="30dp"
+            android:text="/"
+            android:background="@drawable/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnMultiply"
+            app:layout_constraintTop_toTopOf="@id/btnMultiply"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
